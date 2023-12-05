@@ -27,14 +27,15 @@ function Login() {
         return;
       }
 
-      // Armazenar o email do usuário logado
       await AsyncStorage.setItem('loggedInUser', email);
-
-      // Sucesso no login, navega para a tela "Perfil"
       navigation.navigate('MainTabs', { screen: 'Perfil' }); 
     } catch (error) {
       Alert.alert("Erro", "Houve um erro ao tentar logar!");
     }
+  };
+
+  const navigateToSignUp = () => {
+    navigation.navigate('Cadastro');
   };
 
   return (
@@ -60,6 +61,10 @@ function Login() {
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Acessar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.registerButton} onPress={navigateToSignUp}>
+        <Text style={styles.registerButtonText}>Não possui uma conta? Cadastre-se</Text>
       </TouchableOpacity>
     </View>
   );
@@ -95,11 +100,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
+    marginTop: 10,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  registerButton: {
+    marginTop: 15,
+  },
+  registerButtonText: {
+    color: '#38a69d',
+    fontSize: 16,
   },
 });
 
